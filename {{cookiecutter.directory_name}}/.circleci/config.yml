@@ -13,9 +13,6 @@ workflows:
           version: "3.7"
           requires:
             - build
-      - test-py2:
-          requires:
-            - build
 
   deployment-workflow:
     jobs:
@@ -96,27 +93,6 @@ jobs:
           name: Tests
           command: |
             poetry run true
-
-  test-py2:
-    docker:
-      - image: circleci/python:2.7
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - deps-py2-django11-fsm26
-      - run:
-          name: Install Dependencies
-          command: |
-            pip install --user django~=1.11
-      - save_cache:
-          key: deps-py2-django11
-          paths:
-            - /home/circleci/.cache/pip/
-      - run:
-          name: Tests
-          command: |
-            python -c "import django; print(django.get_version())"
 
   deploy:
     docker:
