@@ -3,5 +3,10 @@
   "project_name": "django-package",
   "package_name": "package",
   "author_name": "John Smith",
-  "author_email": "john.smith@gmail.com"
+  "author_email": "john.smith@gmail.com",
+
+  "_copy_without_render": [
+    ".circleci/config.yml"
+]
+
 }
